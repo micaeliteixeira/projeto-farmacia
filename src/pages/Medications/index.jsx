@@ -5,7 +5,6 @@ import { listMedications } from './../../store/medications-list/medicationsListS
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Box from '../../assets/image/drug.png';
-import Loading from '../../assets/image/loading.gif';
 import NotFound from '../../assets/image/not.png';
 import style from './style.module.scss';
 
@@ -115,14 +114,6 @@ function Medications() {
     );
   };
 
-  const renderLoading = () => {
-    return (
-      <div className={style.ContainerError}>
-        <img src={Loading} alt="Loading" className={style.ContainerErrorImg} />
-      </div>
-    );
-  };
-
   const renderNotFound = () => {
     return (
       <div className={style.ContainerError}>
@@ -136,7 +127,6 @@ function Medications() {
   };
 
   const renderPagination = () => {
-    const maxbuttons = 10;
     const controls = {
       next() {
         console.log('next');
@@ -164,47 +154,6 @@ function Medications() {
       },
     };
 
-    const buttons = {
-      create(page) {
-        return (
-          <button
-            key={page}
-            onClick={() => {
-              controls.goTo(page);
-            }}
-          >
-            {page}
-          </button>
-        );
-      },
-      update() {
-        const { maxLeft, maxRight } = buttons.calculateMaxVisible();
-        const arrayPage = [];
-        for (let page = maxLeft; page <= maxRight; page++) {
-          arrayPage.push(page);
-        }
-        return arrayPage.map((page) => buttons.create(page));
-      },
-
-      calculateMaxVisible() {
-        let maxLeft =
-          pagination.page - maxbuttons / 2 < 1
-            ? 1
-            : pagination.page - maxbuttons / 2;
-
-        let maxRight = pagination.page + maxbuttons / 2;
-        if (maxRight > pagination.totalpage) {
-          maxLeft = pagination.totalpage - (maxbuttons - 1);
-          maxRight = pagination.totalpage;
-
-          if (maxLeft < 1) {
-            maxLeft = 1;
-          }
-        }
-        return { maxLeft, maxRight };
-      },
-    };
-
     const handleChange = (e) => {
       setListLimit(e.target.value);
     };
@@ -214,6 +163,7 @@ function Medications() {
       getList(pagination.page, parseInt(listLimit));
     };
 
+    const buttons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     return (
       <div className={style.ContainerPagination}>
         <div className={style.ContainerPaginationButtons}>
@@ -230,8 +180,14 @@ function Medications() {
             &lt;
           </button>
           <div className={style.ContainerPaginationButtons}>
-            {buttons.update()?.map((button, index) => (
-              <React.Fragment key={index}>{button}</React.Fragment>
+            {buttons?.map((page, index) => (
+              <button
+                key={index}
+                onClick={() => controls.goTo(page)}
+                className={style.ContainerPaginationBtn}
+              >
+                {page}
+              </button>
             ))}
           </div>
           <button
@@ -273,11 +229,7 @@ function Medications() {
     <>
       <Header name="Medications" getList={getList} />
 
-      {medicationsState.loading
-        ? renderLoading
-        : list?.length === 0
-        ? renderNotFound()
-        : renderList()}
+      {list?.length === 0 ? renderNotFound() : renderList()}
       {renderPagination()}
     </>
   );

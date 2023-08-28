@@ -23,22 +23,22 @@ const medicationsListSlice = createSlice({
   initialState: {
     list: [],
     error: false,
-    loading: false,
   },
 
   extraReducers: (builder) => {
     builder.addCase(listMedications.fulfilled, (state, action) => {
-      (state.list = action.payload),
-        (state.error = false),
-        (state.loading = false);
+      (state.list = action.payload), (state.error = false);
     });
     builder.addCase(listMedications.rejected, (state) => {
-      (state.list = ''), (state.error = true), (state.loading = false);
-      builder.addCase(listMedications.pending, (state) => {
-        (state.list = ''), (state.error = true), (state.loading = true);
-      });
+      (state.list = ''), (state.error = true);
     });
   },
+  reducers: {
+    logout: (state) => {
+      state.list = [];
+      state.error = false;
+    },
+  },
 });
-
+export const { logout } = medicationsListSlice.actions;
 export default medicationsListSlice.reducer;

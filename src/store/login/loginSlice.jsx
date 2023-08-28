@@ -35,6 +35,12 @@ const loginSlice = createSlice({
       (state.token = ''), (state.error = true);
     });
   },
+  reducers: {
+    logout: (state) => {
+      state.token = '';
+      state.error = false;
+    },
+  },
 });
-
+export const { logout } = loginSlice.actions;
 export default loginSlice.reducer;
