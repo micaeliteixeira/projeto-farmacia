@@ -19,7 +19,9 @@ Para esse projeto, é um portal para acessar os dados a API da BlueStorm Softwar
 ### 🏗 Instalação
 
 1.  Baixe o repositório em sua máquina com o comando:
+ ```bash
     git clone git@github.com:micaeliteixeira/projeto-farmacia.git
+ ```
 
 2.  É necessário ter o Node instalado na máquina.
 
