@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
+$mobile-first: 767px;
+$remove-img: 1000px;
+
+.ContainerLogin {
+  flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.ImgMed {
+  max-width: 50%;
+  object-fit: cover;
+
+  @media screen and (max-width: $remove-img) {
+    display: none;
+  }
+}
+
+.ContainerText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.ContainerTop {
+  text-align: center;
+  margin-bottom: 20px;
+  &Img {
+    width: 15%;
+  }
+
+  &Title {
+    font-family: 'Courier Prime', monospace;
+    color: #a0824e;
+    margin: 0px 0px 10px 0;
+    font-size: 25px;
+  }
+
+  &Error {
+    font-size: 13px;
+    color: #ff5757;
+    margin: 0;
+  }
+}
+
+.ContainerForm {
+  display: flex;
+  flex-direction: column;
+
+  &Label {
+    padding-right: 5px;
+    color: #56645d;
+    text-align: center;
+    margin-bottom: 2px;
+    font-weight: 700;
+    font-size: larger;
+    letter-spacing: 1px;
+  }
+
+  &Input {
+    width: 50%;
+    border-radius: 5px;
+    border: 1px #2b5a2b inset;
+    font-size: 15px;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  &Btn {
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+    background-color: #2b5a2b;
+    color: #ffff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+}
