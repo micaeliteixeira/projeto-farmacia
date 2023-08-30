@@ -64,5 +64,12 @@ npm run dev
 ```
 
 2. Clique no link gerado no informando o localhost que o projeto está rodando.![Captura de tela de 2023-08-28 17-21-07](https://github.com/micaeliteixeira/projeto-farmacia/assets/67610045/7511f241-cc59-4ede-a8e4-1b7a763d46ee)
+      
+3. Login se senha do projeto
+```bash
+username: bluestorm-api
+password: apipassword123
+```
+   
 
 
